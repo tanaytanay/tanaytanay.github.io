@@ -131,6 +131,16 @@
             opacity: 1;
         }
 
+        .work-info.coming-soon::after {
+            content: 'Coming Soon';
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+
+        .work-info.coming-soon:hover::after {
+            opacity: 0.7;
+        }
+
         .work-title {
             font-size: clamp(1rem, 2.5vw, 1.1rem);
             font-weight: 500;
@@ -221,6 +231,12 @@
             transform: translateY(-2px);
         }
 
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin: 0;
+            line-height: 1.2;
+        }
+
         @media (max-width: 768px) {
             .container {
                 width: calc(100% - 1.5rem);
@@ -249,6 +265,14 @@
             .social-links {
                 gap: 1.5rem;
                 margin-top: 1rem;
+            }
+
+            .theme-toggle {
+                top: 0.5rem;
+                right: 0.5rem;
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1rem;
             }
         }
 
@@ -292,6 +316,10 @@
                 width: 2.5rem;
                 height: 2.5rem;
             }
+
+            h1 {
+                font-size: 1.8rem;
+            }
         }
 
         @media (max-height: 600px) {
@@ -309,15 +337,33 @@
                 padding: 0.8rem;
                 margin-bottom: 0.5rem;
             }
+
+            .social-links {
+                margin-top: 0.6rem;
+            }
+        }
+
+        /* Add touch-friendly styles */
+        @media (hover: none) {
+            .work-info:hover {
+                transform: none;
+            }
+
+            .work-info:active {
+                background-color: var(--card-hover);
+            }
+
+            .social-link:hover {
+                transform: none;
+            }
+
+            .social-link:active {
+                color: var(--text-color);
+            }
         }
 
         .bio {
             margin: 0;
-        }
-
-        .nickname {
-            margin: -0.8rem 0 0.5rem 0;
-            font-style: italic;
         }
     </style>
 </head>
@@ -329,13 +375,12 @@
     <div class="container">
         <div class="section">
             <h1>Tanay Parekhji</h1>
-            <p class="nickname">tans</p>
             <div class="social-links">
-                <a href="https://github.com/tanaytanay" class="social-link" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
                 <a href="https://linkedin.com/in/tanaytanay" class="social-link" target="_blank" title="LinkedIn">
                     <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/tanaytanay" class="social-link" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
                 </a>
                 <a href="https://twitter.com/tanayXYZ" class="social-link" target="_blank" title="Twitter">
                     <i class="fab fa-twitter"></i>
@@ -351,7 +396,7 @@
 
         <div class="section">
             <h3 class="section-title">Day</h3>
-            <div class="work-info">
+            <div class="work-info" onclick="window.open('https://drive.google.com/file/d/1wZxgHcUJJyf9f28cmqVmjMT21kEjjmwB/view?usp=share_link', '_blank')">
                 <h4 class="work-title">Senior Software Engineer</h4>
                 <p class="work-company">IronSDN · Fremont, CA</p>
             </div>
@@ -363,7 +408,7 @@
                 <h4 class="work-title">Add Color Gradient to Views</h4>
                 <p class="work-company">React Native · npm</p>
             </div>
-            <div class="work-info">
+            <div class="work-info coming-soon">
                 <h4 class="work-title">Share Contacts from iMessage</h4>
                 <p class="work-company">iOS · App Store</p>
             </div>
@@ -387,16 +432,16 @@
 
         // Array of colors for light mode
         const lightColors = [
-            '#E8F0FE', // Light blue
-            '#F0F7FF', // Pale blue
-            '#F5F5F5', // Light gray
-            '#F8F9FA', // Off white
-            '#F0F4F8', // Light slate
-            '#F5F7FA', // Light blue-gray
-            '#F8FAFC', // Cool white
-            '#F0F2F5', // Light gray-blue
-            '#F5F8FF', // Light blue-white
-            '#F7F9FC'  // Light cool gray
+            '#E3F2FD', // Vibrant light blue
+            '#E8F5E9', // Fresh mint
+            '#FFF3E0', // Warm peach
+            '#F3E5F5', // Soft lavender
+            '#E0F7FA', // Bright cyan
+            '#FCE4EC', // Soft pink
+            '#E8EAF6', // Rich indigo
+            '#F1F8E9', // Vibrant lime
+            '#E0F2F1', // Teal tint
+            '#FFF8E1'  // Warm yellow
         ];
 
         // Function to get a random color based on current theme
@@ -438,10 +483,21 @@
             if (savedTheme === 'light') {
                 document.body.setAttribute('data-theme', 'light');
                 themeToggle.classList.replace('fa-moon', 'fa-sun');
-            } else {
+            } else if (savedTheme === 'dark') {
                 document.body.removeAttribute('data-theme');
                 themeToggle.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                // Use device preference if no saved theme
+                if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    document.body.setAttribute('data-theme', 'light');
+                    themeToggle.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    document.body.removeAttribute('data-theme');
+                    themeToggle.classList.replace('fa-sun', 'fa-moon');
+                }
             }
+            // Set initial background color based on theme
+            document.body.style.background = getRandomColor();
         });
     </script>
 </body>
