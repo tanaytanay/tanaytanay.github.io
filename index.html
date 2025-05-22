@@ -4,34 +4,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
+    <title>tans.dev</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
-            background-color: #210c0c7f;
-            color: #dcdcdc;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            transition: background-color 0.5s ease;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            padding: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.15);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 4rem auto;
+            gap: 4rem;
+        }
+
+        .section {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0 0 2rem 0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .work-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: left;
+            transition: transform 0.2s, background-color 0.2s;
+            cursor: pointer;
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .work-info:hover {
+            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .work-info::after {
+            content: '↗';
+            position: absolute;
+            right: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+
+        .work-info:hover::after {
+            opacity: 1;
+        }
+
+        .work-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0 0 0.5rem 0;
+            color: #ffffff;
+        }
+
+        .work-company {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+        }
+
+        .company-name {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .project-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.2rem;
+            border-radius: 8px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0 0 0.5rem 0;
+            color: #ffffff;
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .link {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: clamp(1rem, 2vw, 1.2rem);
+            border-radius: 8px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: transform 0.2s, background-color 0.2s;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            text-align: left;
+            width: 100%;
+        }
+
+        .link:hover {
+            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .social-links {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            transition: all 0.2s ease;
+        }
+
+        .social-link:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 2rem auto;
+                padding: 2rem;
+                gap: 2.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 1rem auto;
+                padding: 1.5rem;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .profile-picture {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 0.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.3rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .links {
+                gap: 0.5rem;
+            }
+
+            .link-section {
+                gap: 0.3rem;
+            }
+
+            .link {
+                padding: 0.6rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+                margin-top: 0.5rem;
+            }
+        }
+
+        .bio {
             margin: 0;
-            font-family: Arial, sans-serif;
-            text-align: center;
         }
 
-        h1 {
-            font-size: 3rem;
-        }
-
-        p {
-            font-size: 1.2rem;
+        .nickname {
+            margin: -0.5rem 0 0.5rem 0;
+            font-style: italic;
         }
     </style>
 </head>
 
 <body>
-    <div>
-        <h1>501</h1>
+    <div class="container">
+        <div class="section">
+            <h1>Tanay Parekhji</h1>
+            <p class="nickname">tans</p>
+            <div class="social-links">
+                <a href="https://github.com/tanaytanay" class="social-link" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/tanaytanay" class="social-link" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com/tanayXYZ" class="social-link" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://instagram.com/tanaytanay" class="social-link" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:tanayparekhji@gmail.com" class="social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">Day</h3>
+            <div class="work-info">
+                <h4 class="work-title">Senior Software Engineer</h4>
+                <p class="work-company">IronSDN · Fremont, CA</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">Night</h3>
+            <div class="work-info" onclick="window.open('https://www.npmjs.com/package/react-native-multi-color-view', '_blank')">
+                <h4 class="work-title">Add Color Gradient to Views</h4>
+                <p class="work-company">React Native · npm</p>
+            </div>
+            <div class="work-info">
+                <h4 class="work-title">Share Contacts from iMessage</h4>
+                <p class="work-company">iOS · App Store</p>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Array of muted solid colors
+        const colors = [
+            '#2C3E50', // Deep blue-gray
+            '#34495E', // Slate
+            '#2C3A47', // Dark slate
+            '#3D3D3D', // Warm gray
+            '#2D3436', // Charcoal
+            '#2F3640', // Dark blue-gray
+            '#353B48', // Deep slate
+            '#2F3542', // Dark navy
+            '#2C3A47', // Deep blue
+            '#2D3436'  // Dark charcoal
+        ];
+
+        // Function to get a random color from the array
+        function getRandomColor() {
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            return colors[randomIndex];
+        }
+
+        // Set the background color when the page loads
+        document.body.style.background = getRandomColor();
+    </script>
 </body>
 
 </html>
