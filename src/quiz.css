@@ -1,0 +1,113 @@
+.page-desc {
+  color: var(--text-secondary);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  margin: 1rem 0 0;
+  max-width: 480px;
+}
+
+.quiz-list {
+  width: 100%;
+  max-width: 560px;
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quiz-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.quiz-city {
+  min-width: 7rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.quiz-input {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--text-secondary);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.quiz-input:focus {
+  outline: none;
+  border-color: var(--text-secondary-hover);
+}
+
+.quiz-input.correct {
+  border-color: #22c55e;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  10% { transform: translateX(-6px); }
+  20% { transform: translateX(6px); }
+  30% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  50% { transform: translateX(-4px); }
+  60% { transform: translateX(4px); }
+  70% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+  90% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+/* 0.25s shake total (red border only during shake) */
+.quiz-input.wrong {
+  border-color: #ef4444;
+  animation: shake 0.25s ease-in-out 0s 1;
+}
+
+.quiz-input:disabled {
+  opacity: 0.8;
+}
+
+.quiz-submit {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: none;
+  background: var(--card-hover);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.quiz-submit:hover:not(:disabled) {
+  background: var(--text-secondary);
+}
+
+.quiz-submit:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* Reserve space so input width doesn't change when check shows */
+.quiz-check {
+  color: #22c55e;
+  font-size: 1.1rem;
+  width: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+.quiz-check.visible {
+  visibility: visible;
+}
+

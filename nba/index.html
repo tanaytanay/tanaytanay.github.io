@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA · tans.dev</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="../src/base.css">
+    <link rel="stylesheet" href="../src/quiz.css">
+</head>
+
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="container">
+        <div class="section">
+            <h1>NBA</h1>
+            <p class="page-desc">Name the team for each city.</p>
+            <ul id="quiz-list" class="quiz-list" aria-label="NBA city quiz"></ul>
+        </div>
+    </div>
+
+    <script type="application/json" id="nba-teams">
+    [
+      { "city": "Atlanta", "team": "Hawks" },
+      { "city": "Boston", "team": "Celtics" },
+      { "city": "Brooklyn", "team": "Nets" },
+      { "city": "Charlotte", "team": "Hornets" },
+      { "city": "Chicago", "team": "Bulls" },
+      { "city": "Cleveland", "team": "Cavaliers" },
+      { "city": "Dallas", "team": "Mavericks" },
+      { "city": "Denver", "team": "Nuggets" },
+      { "city": "Detroit", "team": "Pistons" },
+      { "city": "Golden State", "team": "Warriors" },
+      { "city": "Houston", "team": "Rockets" },
+      { "city": "Indiana", "team": "Pacers" },
+      { "city": "Los Angeles", "team": "Clippers" },
+      { "city": "Los Angeles", "team": "Lakers" },
+      { "city": "Memphis", "team": "Grizzlies" },
+      { "city": "Miami", "team": "Heat" },
+      { "city": "Milwaukee", "team": "Bucks" },
+      { "city": "Minnesota", "team": "Timberwolves" },
+      { "city": "New Orleans", "team": "Pelicans" },
+      { "city": "New York", "team": "Knicks" },
+      { "city": "Oklahoma City", "team": "Thunder" },
+      { "city": "Orlando", "team": "Magic" },
+      { "city": "Philadelphia", "team": "76ers" },
+      { "city": "Phoenix", "team": "Suns" },
+      { "city": "Portland", "team": "Trail Blazers" },
+      { "city": "Sacramento", "team": "Kings" },
+      { "city": "San Antonio", "team": "Spurs" },
+      { "city": "Toronto", "team": "Raptors" },
+      { "city": "Utah", "team": "Jazz" },
+      { "city": "Washington", "team": "Wizards" }
+    ]
+    </script>
+
+    <script src="../src/theme.js"></script>
+    <script src="../src/quiz.js"></script>
+    <script>
+        initCityTeamQuiz({ teamsScriptId: 'nba-teams', listId: 'quiz-list' });
+    </script>
+</body>
+
+</html>
+
