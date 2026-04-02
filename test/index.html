@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <p>
+        <button type="button" id="btn-ping">django</button>
+        <button type="button" id="btn-root">flask</button>
+    </p>
+    <script>
+        document.getElementById("btn-ping").addEventListener("click", () => {
+            fetch("http://localhost:8000/api/ping/")
+                .then((r) => r.text())
+                .then((text) => alert(text))
+                .catch((error) => alert(error));
+        });
+        document.getElementById("btn-root").addEventListener("click", () => {
+            fetch("http://localhost:1337/")
+                .then((r) => r.text())
+                .then((text) => alert(text))
+                .catch((error) => alert(error));
+        });
+    </script>
+</body>
+</html>
